@@ -10,3 +10,7 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=gestao_vagas
+
+      # s> docker build -l test1         
+      # bcdedit /set hypervisorlaunchtype auto
+      # bcdedit /set hypervisorlauchtype auto
