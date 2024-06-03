@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
-@ControllerAdvice
+@ControllerAdvice //antes de enviar para o usuario ele faz o controlle manual 
 public class ExceptionHandlerController {
     
     private MessageSource messageSource;
