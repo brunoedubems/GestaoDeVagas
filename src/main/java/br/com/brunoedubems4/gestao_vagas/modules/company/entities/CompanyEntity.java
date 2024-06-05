@@ -15,7 +15,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
-@Data
+static @Data
 @Entity(name="company")
 public class CompanyEntity {
     
@@ -35,7 +35,7 @@ public class CompanyEntity {
     private String password;
 
 
-    private String wesite ;
+    private String website ;
     private String name;
     private String description;
 
