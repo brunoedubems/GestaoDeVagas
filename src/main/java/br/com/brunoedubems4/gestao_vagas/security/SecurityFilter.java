@@ -26,19 +26,25 @@ private JWTprovider jwTprovider;
         HttpServletResponse response, 
         FilterChain filterChain)
             throws ServletException, IOException {
-        SecurityContextHolder.getContext().setAuthentication(null);        
+        // SecurityContextHolder.getContext().setAuthentication(null);        
         String header = request.getHeader("Authorization");
 
-        if(header !=null){
-           var subjectToken = this.jwTprovider.validateToken(header);
-        
-            if(subjectToken.isEmpty()){
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                return;
-            }
-            request.setAttribute("company_id", subjectToken);
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(subjectToken,null,Collections.emptyList());
-            SecurityContextHolder.getContext().setAuthentication(auth);
+
+        if(request.getRequestURI().startsWith("/company")){
+            
+                    if(header !=null){
+                       var subjectToken = this.jwTprovider.validateToken(header);
+                    
+                        if(subjectToken.isEmpty()){
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            return;
+                        }
+                        request.setAttribute("company_id", subjectToken);
+                        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(subjectToken,null,
+                            Collections.emptyList());
+                        SecurityContextHolder.getContext().setAuthentication(auth);
+                    }
+
         }
 
        filterChain.doFilter(request, response);
